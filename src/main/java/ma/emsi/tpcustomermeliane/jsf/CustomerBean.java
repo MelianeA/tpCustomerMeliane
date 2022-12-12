@@ -16,7 +16,7 @@ import ma.emsi.tpcustomermeliane.ejb.CustomerManager;
  *
  * @author GRACE_AKPA
  */
-@Named(value = "customerBean")
+@Named(value = "CustomerBean")
 @ViewScoped
 public class CustomerBean implements Serializable {
     private List<Customer> customerList;  
