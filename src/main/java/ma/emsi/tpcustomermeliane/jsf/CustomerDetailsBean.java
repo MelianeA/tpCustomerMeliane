@@ -1,16 +1,20 @@
+package ma.emsi.tpcustomermeliane.jsf;
 
 import jakarta.ejb.EJB;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
 import java.io.Serializable;
+import java.util.List;
 import ma.emsi.tpcustomermeliane.Customer;
+import ma.emsi.tpcustomermeliane.DiscountCode;
 import ma.emsi.tpcustomermeliane.ejb.CustomerManager;
+
 
 
 /**
  * Backing bean pour la page customerDetails.xhtml.
  */
-@Named
+@Named 
 @ViewScoped
 public class CustomerDetailsBean implements Serializable {
 
