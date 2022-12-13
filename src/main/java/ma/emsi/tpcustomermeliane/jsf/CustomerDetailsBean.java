@@ -8,21 +8,22 @@ import java.util.List;
 import ma.emsi.tpcustomermeliane.Customer;
 import ma.emsi.tpcustomermeliane.DiscountCode;
 import ma.emsi.tpcustomermeliane.ejb.CustomerManager;
-
-
+import ma.emsi.tpcustomermeliane.ejb.DiscountCodeManager;
 
 /**
  * Backing bean pour la page customerDetails.xhtml.
  */
-@Named 
+@Named(value = "customerDetailsBean")
 @ViewScoped
 public class CustomerDetailsBean implements Serializable {
 
     private int idCustomer;
     private Customer customer;
+    
 
     @EJB
     private CustomerManager customerManager;
+    private DiscountCodeManager discountCodeManager;
 
     public int getIdCustomer() {
         return idCustomer;
@@ -56,5 +57,14 @@ public class CustomerDetailsBean implements Serializable {
 
     public void loadCustomer() {
         this.customer = customerManager.getCustomer(idCustomer);
+    }
+
+    /**
+     * Retourne la liste de tous les DiscountCode.
+     *
+     * @return
+     */
+    public List<DiscountCode> getDiscountCodes() {
+        return discountCodeManager.getAllDiscountCodes();
     }
 }

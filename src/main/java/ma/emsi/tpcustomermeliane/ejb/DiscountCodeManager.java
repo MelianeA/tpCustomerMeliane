@@ -4,6 +4,7 @@
  */
 package ma.emsi.tpcustomermeliane.ejb;
 
+import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
@@ -14,6 +15,7 @@ import ma.emsi.tpcustomermeliane.DiscountCode;
  *
  * @author GRACE_AKPA
  */
+@Stateless
 public class DiscountCodeManager {
      @PersistenceContext (unitName = "customerPU")
     private EntityManager em;
