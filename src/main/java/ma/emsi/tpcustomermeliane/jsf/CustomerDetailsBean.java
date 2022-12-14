@@ -100,4 +100,5 @@ public class CustomerDetailsBean implements Serializable {
             }
         };
     }
+
 }

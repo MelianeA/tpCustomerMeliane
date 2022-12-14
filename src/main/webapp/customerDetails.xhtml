@@ -13,7 +13,12 @@
         <title>Customer detail</title>
     </h:head>
     <h:body>
-        <h:form>
+        <h:form rendered='#{customerDetailsBean.details == null}'>
+            <h:outputText value="Aucun client avec l'id #{customerDetailsBean.idCustomer} !" rendered='#{customerDetailsBean.details == null}'/>
+            <h:button id="back" value="Revenir à la liste" outcome="CustomerList"/>
+
+        </h:form>
+        <h:form rendered='#{customerDetailsBean.details != null}'>
             <h1><h:outputText value="Create/Edit"/></h1>
             <h:panelGrid columns="2">
                 <h:outputLabel value="CustomerId:" for="customerId" />
