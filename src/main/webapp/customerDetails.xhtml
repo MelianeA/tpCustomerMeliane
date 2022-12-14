@@ -39,7 +39,10 @@
                 <h:outputLabel value="DiscountCode:" for="discountCode" />
                 <h:selectOneMenu id="discountCode" value="#{customerDetailsBean.details.discountCode}" title="DiscountCode" required="true" requiredMessage="The DiscountCode field is required.">
                     <!-- TODO: update below reference to list of available items-->
-                    <f:selectItems value="#{fixme}"/>
+                    <f:selectItems value="#{customerDetailsBean.discountCodes}"
+                                   var="discountCode"
+                                   itemLabel="#{discountCode.discountCode}: #{discountCode.rate}"
+                                   itemValue="#{discountCode}"/>
                 </h:selectOneMenu>
 
             </h:panelGrid>
