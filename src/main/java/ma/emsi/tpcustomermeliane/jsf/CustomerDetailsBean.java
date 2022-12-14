@@ -1,6 +1,9 @@
 package ma.emsi.tpcustomermeliane.jsf;
 
 import jakarta.ejb.EJB;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.convert.Converter;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
 import java.io.Serializable;
@@ -15,14 +18,16 @@ import ma.emsi.tpcustomermeliane.ejb.DiscountCodeManager;
  */
 @Named(value = "customerDetailsBean")
 @ViewScoped
+
 public class CustomerDetailsBean implements Serializable {
 
     private int idCustomer;
     private Customer customer;
-    
+    private List<DiscountCode> discountCodes;
 
     @EJB
     private CustomerManager customerManager;
+    @EJB
     private DiscountCodeManager discountCodeManager;
 
     public int getIdCustomer() {
@@ -65,6 +70,34 @@ public class CustomerDetailsBean implements Serializable {
      * @return
      */
     public List<DiscountCode> getDiscountCodes() {
-        return discountCodeManager.getAllDiscountCodes();
+        discountCodes = discountCodeManager.getAllDiscountCodes();
+        return discountCodes;
+    }
+
+    /**
+     * getter pour la propriété discountCodeConverter.
+     */
+    public Converter<DiscountCode> getDiscountCodeConverter() {
+        return new Converter<DiscountCode>() {
+            /**
+             * Convertit une String en DiscountCode.
+             *
+             * @param value valeur à convertir
+             */
+            @Override
+            public DiscountCode getAsObject(FacesContext context, UIComponent component, String value) {
+                return discountCodeManager.findById(value);
+            }
+
+            /**
+             * Convertit un DiscountCode en String.
+             *
+             * @param value valeur à convertir
+             */
+            @Override
+            public String getAsString(FacesContext context, UIComponent component, DiscountCode value) {
+                return value.getDiscountCode();
+            }
+        };
     }
 }
